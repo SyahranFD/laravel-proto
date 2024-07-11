@@ -64,6 +64,7 @@ class ProjectController extends Controller
         $search = $request->query('search');
         $category = $request->query('category');
         $isFinish = $request->query('is-finish');
+        $limit = $request->query('limit');
 
         $query = Project::query();
 
@@ -77,6 +78,10 @@ class ProjectController extends Controller
 
         if ($isFinish) {
             $query->where('is_finish', $isFinish);
+        }
+
+        if ($limit) {
+            $query->limit($limit);
         }
 
         $user = auth()->user();
