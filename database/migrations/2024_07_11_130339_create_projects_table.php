@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('max_participant');
             $table->string('category');
             $table->boolean('is_paid');
-            $table->string('image')->nullable();
+            $table->text('image')->nullable();
             $table->boolean('is_finish')->default(false);
             $table->string('room_id');
             $table->timestamps();

@@ -17,6 +17,7 @@ class ProjectSkillResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'is_available' => $this->is_available
         ];
     }
 }

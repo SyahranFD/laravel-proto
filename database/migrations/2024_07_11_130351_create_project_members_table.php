@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('project_members', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->string('project_id');
-            $table->string('name');
+            $table->string('user_id');
+            $table->string('expertise');
             $table->timestamps();
 
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

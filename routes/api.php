@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +27,16 @@ Route::prefix('/users')->group(function () {
     Route::get('/show', [UserController::class, 'showCurrent'])->middleware('auth:sanctum');
     Route::put('/update/{id}', [UserController::class, 'update'])->middleware('auth:sanctum');
     Route::delete('/logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
+});
+
+Route::prefix('project')->group(function () {
+    Route::post('/store', [ProjectController::class, 'store'])->middleware('auth:sanctum');
+    Route::post('/{projectId}/store-skill', [ProjectController::class, 'storeSkill'])->middleware('auth:sanctum');
+    Route::post('/{projectId}/send-request', [ProjectController::class, 'sendJoinRequest'])->middleware('auth:sanctum');
+    Route::get('/index', [ProjectController::class, 'index'])->middleware('auth:sanctum');
+    Route::get('/show/{id}', [ProjectController::class, 'showById'])->middleware('auth:sanctum');
+    Route::get('/show', [ProjectController::class, 'showCurrent'])->middleware('auth:sanctum');
+    Route::get('/show-ongoing', [ProjectController::class, 'showCurrentOngoing'])->middleware('auth:sanctum');
+    Route::put('/upload-image/{id}', [ProjectController::class, 'uploadImage'])->middleware('auth:sanctum');
+    Route::put('/finish/{id}', [ProjectController::class, 'finish'])->middleware('auth:sanctum');
 });
