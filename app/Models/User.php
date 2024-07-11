@@ -12,33 +12,39 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
+    public $incrementing = false;
+    protected $guarded = [];
     protected $hidden = [
         'password',
-        'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function project()
+    {
+        return $this->hasMany(Project::class);
+    }
+
+    public function projectMember()
+    {
+        return $this->hasMany(ProjectMember::class);
+    }
+
+    public function projectJoin()
+    {
+        return $this->hasMany(ProjectJoin::class);
+    }
+
+    public function userExpertise()
+    {
+        return $this->hasMany(UserExpertise::class);
+    }
+
+    public function userPortfolioPlatform()
+    {
+        return $this->hasMany(UserPortfolioPlatform::class);
+    }
+
+    public function personalProject()
+    {
+        return $this->hasMany(PersonalProject::class);
+    }
 }
