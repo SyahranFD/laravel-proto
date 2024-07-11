@@ -98,7 +98,9 @@ class ProjectController extends Controller
 
         $projectIds = ProjectMember::where('user_id', $user->id)->pluck('project_id');
         $projects = Project::where('user_id', $user->id)
+            ->where('is_finish', true)
             ->orWhereIn('id', $projectIds)
+            ->where('is_finish', true)
             ->get();
 
         return ProjectResource::collection($projects);
@@ -113,6 +115,7 @@ class ProjectController extends Controller
 
         $projectIds = ProjectMember::where('user_id', $user->id)->pluck('project_id');
         $projects = Project::where('user_id', $user->id)
+            ->where('is_finish', false)
             ->orWhereIn('id', $projectIds)
             ->where('is_finish', false)
             ->get();
