@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\like;
 use App\Models\ProjectJoin;
 use App\Models\ProjectMember;
 use Illuminate\Http\Request;
@@ -28,14 +29,17 @@ class ProjectResource extends JsonResource
             'participant_count' => $this->projectMember->count(),
             'category' => $this->category,
             'image' => $this->image,
+            'like_count' => Like::where('project_id', $this->id)->count(),
             'is_owner' => $this->user_id === auth()->user()->id,
             'is_paid' => $this->is_paid,
             'is_finish' => $this->is_finish,
             'is_joined' => ProjectJoin::where('project_id', $this->id)->where('user_id', auth()->user()->id)->exists(),
             'is_participant' => ProjectMember::where('project_id', $this->id)->where('user_id', auth()->user()->id)->exists(),
+            'is_like' => Like::where('project_id', $this->id)->where('user_id', auth()->user()->id)->exists(),
             'participant' => ProjectMemberResource::collection($this->projectMember),
             'skill' => ProjectSkillResource::collection($this->projectSkill),
             'tool' => ProjectToolResource::collection($this->projectTool),
+            'comment' => CommentResource::collection($this->comment),
         ];
     }
 }
