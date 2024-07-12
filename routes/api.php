@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\PersonalProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +40,10 @@ Route::prefix('project')->group(function () {
     Route::get('/show-ongoing', [ProjectController::class, 'showCurrentOngoing'])->middleware('auth:sanctum');
     Route::put('/upload-image/{id}', [ProjectController::class, 'uploadImage'])->middleware('auth:sanctum');
     Route::put('/finish/{id}', [ProjectController::class, 'finish'])->middleware('auth:sanctum');
+});
+
+Route::prefix('personal-project')->group(function () {
+    Route::post('/store', [PersonalProjectController::class, 'store'])->middleware('auth:sanctum');
+    Route::post('/{personalProjectId}/store-skill', [PersonalProjectController::class, 'storeSkill'])->middleware('auth:sanctum');
+    Route::get('/show', [PersonalProjectController::class, 'showCurrent'])->middleware('auth:sanctum');
 });
