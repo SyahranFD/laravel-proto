@@ -41,4 +41,14 @@ class Project extends Model
     {
         return $this->hasMany(ProjectTool::class);
     }
+
+    public function comment()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function like()
+    {
+        return $this->hasMany(Like::class);
+    }
 }
