@@ -46,4 +46,5 @@ Route::prefix('personal-project')->group(function () {
     Route::post('/store', [PersonalProjectController::class, 'store'])->middleware('auth:sanctum');
     Route::post('/{personalProjectId}/store-skill', [PersonalProjectController::class, 'storeSkill'])->middleware('auth:sanctum');
     Route::get('/show', [PersonalProjectController::class, 'showCurrent'])->middleware('auth:sanctum');
+    Route::get('/show/{id}', [PersonalProjectController::class, 'showById'])->middleware('auth:sanctum');
 });

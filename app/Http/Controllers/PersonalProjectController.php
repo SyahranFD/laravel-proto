@@ -69,4 +69,14 @@ class PersonalProjectController extends Controller
 
         return PersonalProjectResource::collection($personalProject);
     }
+
+    public function showById($id)
+    {
+        $personalProject = PersonalProject::find($id);
+        if (! $personalProject) {
+            return $this->resDataNotFound('Personal Project');
+        }
+
+        return new PersonalProjectResource($personalProject);
+    }
 }
