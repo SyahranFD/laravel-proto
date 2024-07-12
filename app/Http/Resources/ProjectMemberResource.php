@@ -17,6 +17,7 @@ class ProjectMemberResource extends JsonResource
         return [
             'id' => $this->id,
             'full_name' => $this->user->full_name,
+            'profile_picture' => $this->user->profile_picture,
             'expertise' => $this->expertise,
         ];
     }

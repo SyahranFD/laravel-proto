@@ -63,7 +63,7 @@ class ProjectController extends Controller
     {
         $search = $request->query('search');
         $category = $request->query('category');
-        $isFinish = $request->query('is-finish');
+        $isFinish = $request->query('is_finish');
         $limit = $request->query('limit');
 
         $query = Project::query();
@@ -76,8 +76,10 @@ class ProjectController extends Controller
             $query->where('category', $category);
         }
 
-        if ($isFinish) {
-            $query->where('is_finish', $isFinish);
+        if ($isFinish === '0') {
+            $query->where('is_finish', 0);
+        } elseif ($isFinish === '1') {
+            $query->where('is_finish', 1);
         }
 
         if ($limit) {
