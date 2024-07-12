@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Models\like;
+use App\Models\Like;
 use App\Models\ProjectJoin;
 use App\Models\ProjectMember;
 use Illuminate\Http\Request;
