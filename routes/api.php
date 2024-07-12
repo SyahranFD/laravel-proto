@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserExpertiseController;
 use App\Http\Controllers\UserPortfolioPlatformController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ProjectJoinController;
 use App\Http\Controllers\PersonalProjectController;
 
 /*
@@ -46,11 +47,17 @@ Route::prefix('/user-portfolio-platform')->group(function () {
 Route::prefix('project')->group(function () {
     Route::post('/store', [ProjectController::class, 'store'])->middleware('auth:sanctum');
     Route::post('/{projectId}/store-skill', [ProjectController::class, 'storeSkill'])->middleware('auth:sanctum');
-    Route::post('/{projectId}/send-request', [ProjectController::class, 'sendJoinRequest'])->middleware('auth:sanctum');
+
+    Route::post('/{projectId}/send-request', [ProjectJoinController::class, 'store'])->middleware('auth:sanctum');
+    Route::post('/{projectId}/reject-request/{userId}', [ProjectJoinController::class, 'reject'])->middleware('auth:sanctum');
+    Route::post('/{projectId}/accept-request/{userId}', [ProjectJoinController::class, 'accept'])->middleware('auth:sanctum');
+    Route::get('/{projectId}/show-request', [ProjectJoinController::class, 'showByProjectId'])->middleware('auth:sanctum');
+
     Route::get('/index', [ProjectController::class, 'index'])->middleware('auth:sanctum');
     Route::get('/show/{id}', [ProjectController::class, 'showById'])->middleware('auth:sanctum');
     Route::get('/show', [ProjectController::class, 'showCurrent'])->middleware('auth:sanctum');
     Route::get('/show-ongoing', [ProjectController::class, 'showCurrentOngoing'])->middleware('auth:sanctum');
+
     Route::put('/upload-image/{id}', [ProjectController::class, 'uploadImage'])->middleware('auth:sanctum');
     Route::put('/finish/{id}', [ProjectController::class, 'finish'])->middleware('auth:sanctum');
 });
