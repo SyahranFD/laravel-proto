@@ -22,9 +22,9 @@ class UserUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'full_name' => 'min:1|max:255',
-            'age' => 'integer|min:1|max:100',
-            'job' => 'min:1|max:255',
+            'full_name' => 'string|min:1|max:255',
+            'age' => 'string|min:1|max:255',
+            'job' => 'string|min:1|max:255',
 //          'profile_picture' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'profile_picture' => 'min:1|max:2048',
             'profile_background' => 'min:1|max:2048',
