@@ -10,6 +10,7 @@ use App\Http\Resources\UserPortfolioPlatformResource;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Models\UserPortfolioPlatform;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -81,6 +82,28 @@ class UserController extends Controller
         $portofolio = new UserPortfolioPlatformResource($portofolio);
 
         return $this->resStoreData($portofolio);
+    }
+
+    public function index(Request $request)
+    {
+        $job = $request->query('job');
+        $limit = $request->query('limit');
+
+        $query = User::query();
+
+        $query->where('id', '!=', auth()->id());
+
+        if ($job) {
+            $query->where('job', 'like', '%' . $job . '%');
+        }
+
+        if ($limit) {
+            $query->limit($limit);
+        }
+
+        $users = $query->get();
+
+        return response(['data' => $users,], 200);
     }
 
     public function showCurrent()

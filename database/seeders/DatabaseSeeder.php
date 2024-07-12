@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
 
         $user2 = User::create(['id' => 'user-'.fake()->uuid(), 'full_name' => fake()->name(), 'email' => fake()->email(), 'password' => Hash::make('pass'), 'age' => 20, 'job' => 'Web Developer', 'profile_background' => 'https://images.pexels.com/photos/691710/pexels-photo-691710.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
             'profile_picture' => 'https://images.pexels.com/photos/837358/pexels-photo-837358.jpeg?auto=compress&cs=tinysrgb&w=800',]);
-        $user3 = User::create(['id' => 'user-'.fake()->uuid(), 'full_name' => fake()->name(), 'email' => fake()->email(), 'password' => Hash::make('pass'), 'age' => 20, 'job' => 'Web Developer', 'profile_background' => 'https://images.pexels.com/photos/691710/pexels-photo-691710.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+        $user3 = User::create(['id' => 'user-'.fake()->uuid(), 'full_name' => fake()->name(), 'email' => fake()->email(), 'password' => Hash::make('pass'), 'age' => 20, 'job' => '3D Animator', 'profile_background' => 'https://images.pexels.com/photos/691710/pexels-photo-691710.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
             'profile_picture' => 'https://images.pexels.com/photos/445109/pexels-photo-445109.jpeg?auto=compress&cs=tinysrgb&w=800',]);
         $user4 = User::create(['id' => 'user-'.fake()->uuid(), 'full_name' => fake()->name(), 'email' => fake()->email(), 'password' => Hash::make('pass'), 'age' => 20, 'job' => 'Web Developer', 'profile_background' => 'https://images.pexels.com/photos/691710/pexels-photo-691710.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
             'profile_picture' => 'https://images.pexels.com/photos/240561/pexels-photo-240561.jpeg?auto=compress&cs=tinysrgb&w=800',]);

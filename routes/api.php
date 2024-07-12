@@ -27,6 +27,7 @@ Route::prefix('/users')->group(function () {
     Route::post('/register', [UserController::class, 'register']);
     Route::post('/login', [UserController::class, 'login']);
     Route::post('/portfolio-platform', [UserController::class, 'storePortfolio'])->middleware('auth:sanctum');
+    Route::get('index', [UserController::class, 'index'])->middleware('auth:sanctum');
     Route::get('/show', [UserController::class, 'showCurrent'])->middleware('auth:sanctum');
     Route::put('/update', [UserController::class, 'update'])->middleware('auth:sanctum');
     Route::delete('/logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
