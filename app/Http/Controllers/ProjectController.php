@@ -20,7 +20,7 @@ class ProjectController extends Controller
 {
     public function __construct()
     {
-        $this->url = Config::get('url.localhost');
+        $this->url = Config::get('url.hosting');
     }
     public function store(ProjectRequest $request)
     {
