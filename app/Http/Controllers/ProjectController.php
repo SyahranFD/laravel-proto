@@ -140,7 +140,7 @@ class ProjectController extends Controller
         return new ProjectResource($project);
     }
 
-    public function uploadImage(Request $request, $id)
+    public function finish(Request $request, $id)
     {
         $request->validate([ 'image' => 'required', ]);
         $project = Project::find($id);
@@ -149,24 +149,13 @@ class ProjectController extends Controller
         }
 
         $projectData = $request->all();
+        $projectData['is_finish'] = true;
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('public/project');
             $projectData['image'] = $this->url.Storage::url($imagePath);
         }
 
         $project->update($projectData);
-
-        return $this->resUpdateData($project);
-    }
-
-    public function finish($id)
-    {
-        $project = Project::find($id);
-        if (! $project) {
-            return $this->resDataNotFound('Project');
-        }
-
-        $project->update(['is_finish' => true]);
 
         return $this->resUpdateData($project);
     }
