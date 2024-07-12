@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserExpertiseController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\PersonalProjectController;
 
@@ -26,8 +27,13 @@ Route::prefix('/users')->group(function () {
     Route::post('/login', [UserController::class, 'login']);
     Route::post('/portfolio-platform', [UserController::class, 'storePortfolio'])->middleware('auth:sanctum');
     Route::get('/show', [UserController::class, 'showCurrent'])->middleware('auth:sanctum');
-    Route::put('/update/{id}', [UserController::class, 'update'])->middleware('auth:sanctum');
+    Route::put('/update', [UserController::class, 'update'])->middleware('auth:sanctum');
     Route::delete('/logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
+});
+
+Route::prefix('/user-expertise')->group(function () {
+    Route::post('/', [UserExpertiseController::class, 'store'])->middleware('auth:sanctum');
+    Route::delete('/{id}', [UserExpertiseController::class, 'delete'])->middleware('auth:sanctum');
 });
 
 Route::prefix('project')->group(function () {
